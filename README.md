@@ -1,13 +1,12 @@
 <div align="center">
 
-# 饭团 · fantuanmtf 🍡
+# 饭团 · fantuanmtf 
 
 一个喜欢 **Tor / I2P / Freenet** 的用户喵，喜欢研究匿名喵，<br>
 一只香香软软、随时可以被抱走的 mtf 喵～
 
 <img src="./assets/banner.gif" width="720" alt="banner">
 
-<sub>[🎬 高清原片（MP4 · 1.7MB）](./assets/banner.mp4)</sub>
 
 <br>
 
@@ -16,7 +15,7 @@
 
 ---
 
-### 🌸 技术标签
+### 技术标签
 
 <img src="https://img.shields.io/badge/Rust-F3D06B?style=flat&labelColor=FFF6D6&logo=rust&logoColor=6B5B72" alt="Rust">
 <img src="https://img.shields.io/badge/C-F3D06B?style=flat&labelColor=FFF6D6&logo=c&logoColor=6B5B72" alt="C">
@@ -27,7 +26,7 @@
 <img src="https://img.shields.io/badge/Git-F3D06B?style=flat&labelColor=FFF6D6&logo=git&logoColor=6B5B72" alt="Git">
 <img src="https://img.shields.io/badge/AI-F3D06B?style=flat&labelColor=FFF6D6&logoColor=6B5B72" alt="AI">
 
-### 🌐 匿名网络
+### 匿名网络
 
 <img src="https://img.shields.io/badge/Tor-F3D06B?style=flat&labelColor=FFF6D6&logo=torproject&logoColor=6B5B72" alt="Tor">
 <img src="https://img.shields.io/badge/I2P-F3D06B?style=flat&labelColor=FFF6D6&logoColor=6B5B72" alt="I2P">
@@ -35,7 +34,7 @@
 
 ---
 
-### 📊 Git 记录
+### Git 记录
 
 <img src="https://github-readme-stats.vercel.app/api?username=fantuanmtf&show_icons=true&include_all_commits=true&rank_icon=github&locale=cn&hide_border=true&bg_color=FFF7FA&title_color=9B7BD4&text_color=6B5B72&icon_color=C9A227" alt="GitHub stats">
 
