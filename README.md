@@ -1,15 +1,15 @@
 <div align="center">
 
-# 饭团 · fantuanmtf 
+# 饭团 · fantuanmtf
 
 一个喜欢 **Tor / I2P / Freenet** 的用户喵，喜欢研究匿名喵，<br>
 一只香香软软、随时可以被抱走的 mtf 喵～
 
 <img src="./assets/banner.gif" width="720" alt="banner">
 
-
 <br>
 
+[![个人主页](https://img.shields.io/badge/%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5-fantuanmtf.github.io-9B7BD4?style=flat&logo=githubpages&logoColor=white)](https://fantuanmtf.github.io/fantuanmtf/)
 [![tor blog](https://img.shields.io/badge/tor_blog-9B7BD4?style=flat&logo=torproject&logoColor=white)](http://lgbtqiadfu5epuzzc52vsmw657srrg4ud3b3fm6wtigono5ii3ldw3qd.onion/)
 [![X](https://img.shields.io/badge/X-@fantuan__mtf-6B5B72?style=flat&logo=x&logoColor=white)](https://x.com/fantuan_mtf)
 
@@ -34,19 +34,10 @@
 
 ---
 
-### Git 记录
+### 个人主页
 
-<img src="https://github-readme-stats.vercel.app/api?username=fantuanmtf&show_icons=true&include_all_commits=true&rank_icon=github&locale=cn&hide_border=true&bg_color=FFF7FA&title_color=9B7BD4&text_color=6B5B72&icon_color=C9A227" alt="GitHub stats">
+悬浮小卡片、仓库实时动态、摸鱼状态都在这里：
 
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=fantuanmtf&layout=compact&langs_count=6&locale=cn&exclude_repo=Draft-of-an-Anonymity-Breaking-Toy-for-Anonymous-Networks&hide_border=true&bg_color=FFF7FA&title_color=9B7BD4&text_color=6B5B72" alt="Top languages">
-
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=fantuanmtf&repo=fantuan-kernel&locale=cn&hide_border=true&bg_color=FFF7FA&title_color=9B7BD4&text_color=6B5B72&icon_color=C9A227" alt="fantuan-kernel">
-<img src="https://github-readme-stats.vercel.app/api/pin/?username=fantuanmtf&repo=Chrono-shift&locale=cn&hide_border=true&bg_color=FFF7FA&title_color=9B7BD4&text_color=6B5B72&icon_color=C9A227" alt="Chrono-shift">
-
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=fantuanmtf&bg_color=FFF7FA&color=6B5B72&line=9B7BD4&point=C9A227&area=true&hide_border=true" width="820" alt="Activity graph">
-
----
-
-<sub>谢谢你来过，愿你今天也被温柔以待 ☁️</sub>
+**[https://fantuanmtf.github.io/fantuanmtf](https://fantuanmtf.github.io/fantuanmtf/)**
 
 </div>

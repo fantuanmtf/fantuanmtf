@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>饭团 · fantuanmtf</title>
+<meta name="description" content="饭团（fantuanmtf）的个人主页：喜欢 Tor / I2P / Freenet，研究匿名网络，偏好 Rust / C / C++ 与 Gentoo / Arch。">
+<meta property="og:title" content="饭团 · fantuanmtf">
+<meta property="og:description" content="一个喜欢 Tor / I2P / Freenet 的用户喵，喜欢研究匿名喵。">
+<meta property="og:image" content="https://fantuanmtf.github.io/fantuanmtf/assets/banner.gif">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="assets/avatar.jpg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="bg-blobs" aria-hidden="true"></div>
+
+<main class="page">
+
+  <header class="card hero">
+    <img class="avatar" src="assets/avatar.jpg" alt="饭团的头像" width="96" height="96">
+    <h1>饭团<span class="dim"> / fantuanmtf</span></h1>
+    <p class="type-line">
+      <span id="typing" aria-live="polite"></span><span class="caret" aria-hidden="true"></span>
+    </p>
+    <p class="bio">
+      一个喜欢 Tor / I2P / Freenet 的用户喵，喜欢研究匿名喵，<br>
+      一只香香软软、随时可以被抱走的 mtf 喵。
+    </p>
+    <nav class="links" aria-label="常用链接">
+      <a class="pill pill-purple" href="http://lgbtqiadfu5epuzzc52vsmw657srrg4ud3b3fm6wtigono5ii3ldw3qd.onion/" rel="noopener">tor blog</a>
+      <a class="pill pill-ink" href="https://x.com/fantuan_mtf" target="_blank" rel="noopener">X</a>
+      <a class="pill pill-soft" href="https://github.com/fantuanmtf" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="card banner-card" aria-label="头图">
+    <video class="banner" src="assets/banner.mp4" poster="assets/banner-poster.jpg" autoplay muted loop playsinline></video>
+  </section>
+
+  <section class="card tags-card">
+    <h2>技术标签</h2>
+    <div class="tags">
+      <span class="tag">Rust</span>
+      <span class="tag">C</span>
+      <span class="tag">C++</span>
+      <span class="tag">Linux</span>
+      <span class="tag">Gentoo</span>
+      <span class="tag">Arch</span>
+      <span class="tag">Git</span>
+      <span class="tag">AI</span>
+    </div>
+    <h2>匿名网络</h2>
+    <div class="tags">
+      <span class="tag">Tor</span>
+      <span class="tag">I2P</span>
+      <span class="tag">Freenet</span>
+    </div>
+  </section>
+
+  <section class="cards">
+    <article class="card stat-card">
+      <h2>摸鱼状态</h2>
+      <p class="big" id="since-last">--</p>
+      <p class="hint" id="since-hint">正在读取最近的提交记录…</p>
+    </article>
+    <article class="card stat-card">
+      <h2>GitHub 概览</h2>
+      <dl class="overview">
+        <div><dt>仓库</dt><dd id="stat-repos">--</dd></div>
+        <div><dt>Star</dt><dd id="stat-stars">--</dd></div>
+        <div><dt>关注者</dt><dd id="stat-followers">--</dd></div>
+      </dl>
+      <p class="hint" id="overview-note">数据来自 GitHub API</p>
+    </article>
+    <article class="card stat-card">
+      <h2>常用语言</h2>
+      <ul class="langs" id="langs">
+        <li class="lang-empty">正在统计…</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="card table-card">
+    <div class="table-head">
+      <h2>仓库动态</h2>
+      <div class="table-actions">
+        <span class="hint" id="updated-at"></span>
+        <button id="refresh" type="button">刷新</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>仓库</th>
+            <th>语言</th>
+            <th>Star</th>
+            <th>最近提交</th>
+            <th>距现在</th>
+          </tr>
+        </thead>
+        <tbody id="repo-table">
+          <tr><td colspan="5" class="table-empty">正在读取仓库列表…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint" id="data-note"></p>
+  </section>
+
+  <footer class="footer">
+    <p>饭团 · fantuanmtf</p>
+    <p class="hint">tor blog 需要 Tor 浏览器才能访问 · 数据来自 GitHub API</p>
+  </footer>
+
+</main>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>
