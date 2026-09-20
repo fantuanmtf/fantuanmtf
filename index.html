@@ -16,9 +16,27 @@
 
 <div class="bg-blobs" aria-hidden="true"></div>
 
+<aside class="arc-nav" aria-label="弧形导航">
+  <div class="arc-track" aria-hidden="true"></div>
+  <div class="arc-wheel">
+    <button class="arc-item" type="button" data-target="top" aria-label="首页"><span class="arc-dot"></span><span class="arc-label">首页</span></button>
+    <button class="arc-item" type="button" data-target="tags" aria-label="技术"><span class="arc-dot"></span><span class="arc-label">技术</span></button>
+    <button class="arc-item" type="button" data-target="stats" aria-label="数据"><span class="arc-dot"></span><span class="arc-label">数据</span></button>
+    <button class="arc-item" type="button" data-target="repos" aria-label="记录"><span class="arc-dot"></span><span class="arc-label">记录</span></button>
+  </div>
+</aside>
+
 <main class="page">
 
-  <header class="card hero">
+  <nav class="segmented" aria-label="页面导航">
+    <span class="segmented-thumb" aria-hidden="true"></span>
+    <button class="seg-btn active" type="button" data-target="top">首页</button>
+    <button class="seg-btn" type="button" data-target="tags">技术</button>
+    <button class="seg-btn" type="button" data-target="stats">数据</button>
+    <button class="seg-btn" type="button" data-target="repos">记录</button>
+  </nav>
+
+  <header class="card hero" id="top" data-section>
     <img class="avatar" src="assets/avatar.jpg" alt="饭团的头像" width="96" height="96">
     <h1>饭团<span class="dim"> / fantuanmtf</span></h1>
     <p class="type-line">
@@ -26,8 +44,7 @@
     </p>
     <p class="bio">
       一个喜欢 Tor / I2P / Freenet 的用户喵，喜欢研究匿名喵，<br>
-      一个可以被抱走的MTF喵。
-      15岁的新手开发者喵
+      一个可以被抱走的 MTF 喵，15 岁的新手开发者喵。
     </p>
     <nav class="links" aria-label="常用链接">
       <a class="pill pill-purple" href="http://lgbtqiadfu5epuzzc52vsmw657srrg4ud3b3fm6wtigono5ii3ldw3qd.onion/" rel="noopener">tor blog</a>
@@ -40,7 +57,7 @@
     <video class="banner" src="assets/banner.mp4" poster="assets/banner-poster.jpg" autoplay muted loop playsinline></video>
   </section>
 
-  <section class="card tags-card">
+  <section class="card tags-card" id="tags" data-section>
     <h2>技术标签</h2>
     <div class="tags">
       <span class="tag">Rust</span>
@@ -60,7 +77,7 @@
     </div>
   </section>
 
-  <section class="cards">
+  <section class="cards" id="stats" data-section>
     <article class="card stat-card">
       <h2>摸鱼状态</h2>
       <p class="big" id="since-last">--</p>
@@ -69,9 +86,9 @@
     <article class="card stat-card">
       <h2>GitHub 概览</h2>
       <dl class="overview">
-        <div><dt>仓库</dt><dd id="stat-repos">--</dd></div>
-        <div><dt>Star</dt><dd id="stat-stars">--</dd></div>
-        <div><dt>关注者</dt><dd id="stat-followers">--</dd></div>
+        <div><dt>仓库</dt><dd id="stat-repos">0</dd></div>
+        <div><dt>Star</dt><dd id="stat-stars">0</dd></div>
+        <div><dt>关注者</dt><dd id="stat-followers">0</dd></div>
       </dl>
       <p class="hint" id="overview-note">数据来自 GitHub API</p>
     </article>
@@ -80,10 +97,11 @@
       <ul class="langs" id="langs">
         <li class="lang-empty">正在统计…</li>
       </ul>
+      <p class="hint">按公开仓库的主要语言统计</p>
     </article>
   </section>
 
-  <section class="card table-card">
+  <section class="card table-card" id="repos" data-section>
     <div class="table-head">
       <h2>仓库动态</h2>
       <div class="table-actions">

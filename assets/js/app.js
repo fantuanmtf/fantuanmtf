@@ -6,6 +6,10 @@
   const API_REPOS = "https://api.github.com/users/" + USERNAME + "/repos?per_page=100&sort=pushed";
   const CACHE_KEY = "fantuanmtf.home.cache.v1";
   const TTL = 10 * 60 * 1000;
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const RING_RADIUS = 38;
+  const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
+  const REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const LANG_COLORS = {
     Rust: "#d99a63",
@@ -29,7 +33,7 @@
     "正在翻匿名网络论文",
     "又在折腾 Arch",
     "正在和 C 指针搏斗",
-    "随机播放中"
+    "随机播放中",
     "Gentoo被Freenet OOM了",
     "被 Tor 从I2P带走了",
     "不小心用Rust写了个内存泄漏",
@@ -37,8 +41,8 @@
     "正在和对象亲亲抱抱",
     "正在变成女生",
     "正在看尼古喵喵",
-    "正在刷视频摸鱼",
-    ];
+    "正在刷视频摸鱼"
+  ];
 
   const FALLBACK = {
     at: 0,
@@ -173,23 +177,91 @@
     }
   }
 
+  function countUp(el, to, duration, suffix) {
+    if (!el) return;
+    const tail = suffix || "";
+    const target = Number(to);
+    if (!isFinite(target)) {
+      el.textContent = "—";
+      return;
+    }
+    const from = Number(el.dataset.value || 0);
+    el.dataset.value = String(target);
+    if (REDUCE_MOTION || from === target) {
+      el.textContent = target + tail;
+      return;
+    }
+    const start = performance.now();
+    const dur = duration || 1300;
+    const frame = (now) => {
+      const progress = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(from + (target - from) * eased) + tail;
+      if (progress < 1) requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+
   function renderOverview(data) {
     const user = data.user || {};
     const repos = data.repos || [];
     const totalStars = repos.reduce((sum, repo) => sum + repo.stars, 0);
 
-    const repoEl = $("#stat-repos");
-    const starEl = $("#stat-stars");
+    countUp($("#stat-repos"), user.public_repos != null ? user.public_repos : repos.length);
+    countUp($("#stat-stars"), totalStars);
+
     const followerEl = $("#stat-followers");
-    if (repoEl) repoEl.textContent = user.public_repos != null ? user.public_repos : repos.length;
-    if (starEl) starEl.textContent = totalStars;
-    if (followerEl) followerEl.textContent = user.followers != null ? user.followers : "—";
+    if (user.followers == null) {
+      if (followerEl) followerEl.textContent = "—";
+    } else {
+      countUp(followerEl, user.followers);
+    }
+  }
+
+  let ringTargets = [];
+  let ringsObserver = null;
+
+  function animateRings() {
+    ringTargets.forEach((item) => {
+      item.circle.style.strokeDashoffset = String(item.offset);
+      countUp(item.valueEl, item.pct, 1500, "%");
+    });
+    ringTargets = [];
+  }
+
+  function observeRings() {
+    const list = $("#langs");
+    if (!list) return;
+    if (!ringTargets.length) return;
+    if (REDUCE_MOTION) {
+      animateRings();
+      return;
+    }
+    if (!ringsObserver) {
+      ringsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateRings();
+            if (ringsObserver) {
+              ringsObserver.disconnect();
+              ringsObserver = null;
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+    }
+    ringsObserver.observe(list);
   }
 
   function renderLangs(repos) {
     const list = $("#langs");
     if (!list) return;
     list.textContent = "";
+    ringTargets = [];
+    if (ringsObserver) {
+      ringsObserver.disconnect();
+      ringsObserver = null;
+    }
 
     const counts = new Map();
     repos.forEach((repo) => {
@@ -211,24 +283,55 @@
       .forEach(([lang, count]) => {
         const pct = Math.round((count / total) * 100);
         const li = document.createElement("li");
-        const top = document.createElement("div");
-        top.className = "lang-top";
-        const name = document.createElement("span");
-        name.textContent = lang;
-        const value = document.createElement("span");
-        value.className = "pct";
-        value.textContent = pct + "%";
-        top.append(name, value);
-        const bar = document.createElement("div");
-        bar.className = "bar";
-        const fill = document.createElement("i");
-        bar.appendChild(fill);
-        li.append(top, bar);
+        li.className = "lang-ring";
+
+        const wrap = document.createElement("div");
+        wrap.className = "ring-wrap";
+
+        const svg = document.createElementNS(SVG_NS, "svg");
+        svg.setAttribute("viewBox", "0 0 90 90");
+        svg.setAttribute("class", "ring");
+        svg.setAttribute("aria-hidden", "true");
+
+        const track = document.createElementNS(SVG_NS, "circle");
+        track.setAttribute("cx", "45");
+        track.setAttribute("cy", "45");
+        track.setAttribute("r", String(RING_RADIUS));
+        track.setAttribute("class", "ring-track");
+
+        const circle = document.createElementNS(SVG_NS, "circle");
+        circle.setAttribute("cx", "45");
+        circle.setAttribute("cy", "45");
+        circle.setAttribute("r", String(RING_RADIUS));
+        circle.setAttribute("class", "ring-progress");
+        circle.setAttribute("stroke", LANG_COLORS[lang] || "#b79ce8");
+        circle.setAttribute("stroke-dasharray", String(RING_CIRCUMFERENCE));
+        circle.setAttribute("stroke-dashoffset", String(RING_CIRCUMFERENCE));
+
+        svg.append(track, circle);
+
+        const value = document.createElement("div");
+        value.className = "ring-value";
+        value.textContent = "0%";
+
+        wrap.append(svg, value);
+
+        const label = document.createElement("span");
+        label.className = "ring-lang";
+        label.textContent = lang;
+
+        li.append(wrap, label);
         list.appendChild(li);
-        requestAnimationFrame(() => {
-          fill.style.width = pct + "%";
+
+        ringTargets.push({
+          circle,
+          valueEl: value,
+          offset: RING_CIRCUMFERENCE * (1 - pct / 100),
+          pct
         });
       });
+
+    observeRings();
   }
 
   function renderTable(repos) {
@@ -396,7 +499,7 @@
       return phrase;
     };
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (REDUCE_MOTION) {
       el.textContent = pick();
       return;
     }
@@ -431,6 +534,93 @@
     setTimeout(step, 500);
   }
 
+  function setupNavigation() {
+    const sections = Array.from(document.querySelectorAll("[data-section]"));
+    const segButtons = Array.from(document.querySelectorAll(".seg-btn"));
+    const arcItems = Array.from(document.querySelectorAll(".arc-item"));
+    const thumb = document.querySelector(".segmented-thumb");
+    const ARC_STEP = 27;
+    let activeId = "";
+
+    function setActive(id) {
+      if (!id || id === activeId) return;
+      activeId = id;
+
+      const activeBtn = segButtons.find((btn) => btn.dataset.target === id);
+      segButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.target === id));
+      if (thumb && activeBtn) {
+        thumb.style.width = activeBtn.offsetWidth + "px";
+        thumb.style.transform = "translateX(" + activeBtn.offsetLeft + "px)";
+      }
+
+      const index = arcItems.findIndex((item) => item.dataset.target === id);
+      const center = index < 0 ? 0 : index;
+      arcItems.forEach((item, i) => {
+        const angle = (i - center) * ARC_STEP;
+        item.classList.toggle("active", i === center);
+        item.style.transform = "rotate(" + angle + "deg) translateX(-150px) rotate(" + -angle + "deg)";
+      });
+    }
+
+    function updateFromScroll() {
+      const probe = window.scrollY + window.innerHeight * 0.32;
+      let current = sections.length ? sections[0].id : "";
+      sections.forEach((section) => {
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        if (top <= probe) current = section.id;
+      });
+      setActive(current);
+    }
+
+    document.querySelectorAll("[data-target]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        target.scrollIntoView({ behavior: REDUCE_MOTION ? "auto" : "smooth", block: "start" });
+      });
+    });
+
+    let scheduled = false;
+    window.addEventListener("scroll", () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => {
+        scheduled = false;
+        updateFromScroll();
+      });
+    }, { passive: true });
+
+    window.addEventListener("resize", () => {
+      const current = activeId;
+      activeId = "";
+      setActive(current || (sections[0] ? sections[0].id : ""));
+    });
+
+    setActive(sections.length ? sections[0].id : "");
+    updateFromScroll();
+  }
+
+  function setupReveal() {
+    const cards = Array.from(document.querySelectorAll(".card"));
+    if (!cards.length || REDUCE_MOTION) return;
+
+    cards.forEach((card, i) => {
+      card.classList.add("reveal");
+      card.style.setProperty("--d", Math.min(i * 55, 320) + "ms");
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+
+    cards.forEach((card) => observer.observe(card));
+  }
+
   const refreshButton = $("#refresh");
   if (refreshButton) {
     refreshButton.addEventListener("click", () => load(true));
@@ -443,6 +633,8 @@
   setInterval(() => load(false), TTL);
   setInterval(tick, 1000);
 
+  setupNavigation();
+  setupReveal();
   startTyping();
   load(false);
 })();
