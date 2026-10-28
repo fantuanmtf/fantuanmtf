@@ -880,6 +880,170 @@ tbody tr:last-child td {
   text-align: center;
 }
 
+/* 赞助 */
+.support-card {
+  overflow: hidden;
+}
+
+.support-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.support-intro {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.support-intro .hint {
+  max-width: 52ch;
+}
+
+.accept-badge {
+  flex: 0 0 auto;
+  width: 190px;
+  height: auto;
+  border-radius: 12px;
+  filter: drop-shadow(0 8px 14px rgba(30, 70, 160, 0.18));
+}
+
+.coin-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coin-item {
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.54);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 16px;
+  box-shadow:
+    0 0 0 1px rgba(120, 95, 155, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.coin-item:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.coin-primary {
+  background: linear-gradient(135deg, rgba(241, 236, 249, 0.9), rgba(255, 246, 214, 0.55));
+  border-color: rgba(155, 123, 212, 0.22);
+}
+
+.coin-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.coin-name {
+  color: var(--ink);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.coin-net {
+  margin-left: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.coin-addr {
+  display: block;
+  color: var(--purple-ink);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  user-select: all;
+}
+
+.copy-btn {
+  flex: 0 0 auto;
+  padding: 5px 13px;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  box-shadow:
+    0 0 0 1px rgba(120, 95, 155, 0.07),
+    0 5px 12px -9px rgba(90, 60, 130, 0.55),
+    inset 0 1px 0 #fff;
+  color: var(--purple-deep);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+
+.copy-btn:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+}
+
+.copy-btn:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+}
+
+.copy-btn.copied {
+  background: #e9f7ee;
+  border-color: rgba(88, 180, 122, 0.35);
+  color: #2f7a4d;
+  box-shadow:
+    0 0 0 1px rgba(88, 180, 122, 0.15),
+    inset 0 1px 0 #fff;
+}
+
+.coin-divider {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.coin-divider::before,
+.coin-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+}
+
+.copy-status {
+  min-height: 1.4em;
+  margin: 6px 0 0;
+  color: var(--purple-deep);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
 /* 页脚 */
 .footer {
   padding: 6px 0 0;
@@ -937,6 +1101,18 @@ tbody tr:last-child td {
   .seg-btn {
     padding: 6px 13px;
     font-size: 13px;
+  }
+
+  .accept-badge {
+    width: 160px;
+  }
+
+  .coin-item {
+    padding: 12px;
+  }
+
+  .coin-addr {
+    font-size: 12px;
   }
 
   .ring-wrap {

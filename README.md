@@ -40,4 +40,36 @@
 
 **[https://fantuanmtf.github.io/fantuanmtf](https://fantuanmtf.github.io/fantuanmtf/)**
 
+---
+
+### 赞助
+
+如果这个主页或我的开源工作帮到了你，可以请我喝一杯喵。优先推荐 **Monero**，隐私更好：
+
+```
+85EogNCqzyce44HwxoJaWWPy8g45WENqgYHjHdwNVguTCb7oV8Wjh2vNkGFAGFtf4r67Wh2qHA8TnVJV6Toui9gvEempUZj
+```
+
+其他链会定期通过 DEX 归集到 Monero：
+
+**Bitcoin (BTC)** · 仅主网
+
+```
+bc1qdgfj0rm0tguna4nk36lxmeq45h59hscusrthk2
+```
+
+**Bitcoin Cash (BCH)** · cashaddr
+
+```
+bitcoincash:qrnyczppcmxkj7r2ajddsvsh6el4s4v9fvfgs0wl9h
+```
+
+**Ethereum (ETH)** · Ethereum 主网
+
+```
+0x0Ad817F7Ca658B3D2D83Ab019F2AeA5645a5b672
+```
+
+<img src="./assets/we-accept-bitcoin.svg" width="180" alt="We accept Bitcoin">
+
 </div>

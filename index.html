@@ -24,6 +24,7 @@
     <button class="arc-item" type="button" data-target="tags" aria-label="技术"><span class="arc-dot"></span><span class="arc-label">技术</span></button>
     <button class="arc-item" type="button" data-target="stats" aria-label="数据"><span class="arc-dot"></span><span class="arc-label">数据</span></button>
     <button class="arc-item" type="button" data-target="repos" aria-label="记录"><span class="arc-dot"></span><span class="arc-label">记录</span></button>
+    <button class="arc-item" type="button" data-target="support" aria-label="赞助"><span class="arc-dot"></span><span class="arc-label">赞助</span></button>
   </div>
 </aside>
 
@@ -35,6 +36,7 @@
     <button class="seg-btn" type="button" data-target="tags">技术</button>
     <button class="seg-btn" type="button" data-target="stats">数据</button>
     <button class="seg-btn" type="button" data-target="repos">记录</button>
+    <button class="seg-btn" type="button" data-target="support">赞助</button>
   </nav>
 
   <header class="card hero" id="top" data-section>
@@ -75,6 +77,13 @@
       <span class="tag">Tor</span>
       <span class="tag">I2P</span>
       <span class="tag">Freenet</span>
+    </div>
+    <h2>虚拟货币</h2>
+    <div class="tags">
+      <span class="tag">Monero</span>
+      <span class="tag">Bitcoin</span>
+      <span class="tag">Bitcoin Cash</span>
+      <span class="tag">Ethereum</span>
     </div>
   </section>
 
@@ -127,6 +136,55 @@
       </table>
     </div>
     <p class="hint" id="data-note"></p>
+  </section>
+
+  <section class="card support-card" id="support" data-section>
+    <div class="support-head">
+      <div class="support-intro">
+        <h2>赞助 / Support</h2>
+        <p class="hint">如果这个主页或我的开源工作帮到了你，可以请我喝一杯喵。优先推荐 Monero，隐私更好。</p>
+      </div>
+      <img class="accept-badge" src="assets/we-accept-bitcoin.svg" alt="We accept Bitcoin" width="200" height="56" loading="lazy">
+    </div>
+
+    <ul class="coin-list">
+      <li class="coin-item coin-primary">
+        <div class="coin-head">
+          <span class="coin-name">Monero <span class="coin-net">XMR · 主推荐</span></span>
+          <button class="copy-btn" type="button" data-copy-target="addr-xmr" data-copy-label="Monero" aria-label="复制 Monero 地址">复制</button>
+        </div>
+        <code class="coin-addr" id="addr-xmr">85EogNCqzyce44HwxoJaWWPy8g45WENqgYHjHdwNVguTCb7oV8Wjh2vNkGFAGFtf4r67Wh2qHA8TnVJV6Toui9gvEempUZj</code>
+      </li>
+    </ul>
+
+    <p class="coin-divider"><span>其他链 · 会定期归集到 Monero</span></p>
+
+    <ul class="coin-list coin-list-secondary">
+      <li class="coin-item">
+        <div class="coin-head">
+          <span class="coin-name">Bitcoin <span class="coin-net">BTC · 仅主网</span></span>
+          <button class="copy-btn" type="button" data-copy-target="addr-btc" data-copy-label="Bitcoin" aria-label="复制 Bitcoin 地址">复制</button>
+        </div>
+        <code class="coin-addr" id="addr-btc">bc1qdgfj0rm0tguna4nk36lxmeq45h59hscusrthk2</code>
+      </li>
+      <li class="coin-item">
+        <div class="coin-head">
+          <span class="coin-name">Bitcoin Cash <span class="coin-net">BCH · cashaddr</span></span>
+          <button class="copy-btn" type="button" data-copy-target="addr-bch" data-copy-label="Bitcoin Cash" aria-label="复制 Bitcoin Cash 地址">复制</button>
+        </div>
+        <code class="coin-addr" id="addr-bch">bitcoincash:qrnyczppcmxkj7r2ajddsvsh6el4s4v9fvfgs0wl9h</code>
+      </li>
+      <li class="coin-item">
+        <div class="coin-head">
+          <span class="coin-name">Ethereum <span class="coin-net">ETH · Ethereum 主网</span></span>
+          <button class="copy-btn" type="button" data-copy-target="addr-eth" data-copy-label="Ethereum" aria-label="复制 Ethereum 地址">复制</button>
+        </div>
+        <code class="coin-addr" id="addr-eth">0x0Ad817F7Ca658B3D2D83Ab019F2AeA5645a5b672</code>
+      </li>
+    </ul>
+
+    <p class="hint">转账前请确认链和网络，转错链无法找回喵。</p>
+    <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
   </section>
 
   <footer class="footer">

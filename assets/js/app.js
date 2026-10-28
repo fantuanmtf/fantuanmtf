@@ -534,6 +534,63 @@
     setTimeout(step, 500);
   }
 
+  function setupCopy() {
+    const buttons = Array.from(document.querySelectorAll("[data-copy-target]"));
+    if (!buttons.length) return;
+    const status = $("#copy-status");
+
+    const fallbackCopy = (text) => {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.top = "-9999px";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      const ok = document.execCommand("copy");
+      area.remove();
+      if (!ok) throw new Error("copy failed");
+    };
+
+    const copyText = async (text) => {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return;
+        } catch (err) {
+          /* 权限被拒时退回 execCommand */
+        }
+      }
+      fallbackCopy(text);
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copyTarget);
+        if (!target) return;
+        const text = target.textContent.trim();
+        const label = button.dataset.copyLabel || "";
+
+        try {
+          await copyText(text);
+          button.textContent = "已复制";
+          button.classList.add("copied");
+          if (status) status.textContent = "已复制 " + label + " 地址";
+        } catch (err) {
+          button.textContent = "复制失败";
+          if (status) status.textContent = "复制失败，请手动选中地址复制";
+        }
+
+        window.clearTimeout(button.copyTimer);
+        button.copyTimer = window.setTimeout(() => {
+          button.textContent = "复制";
+          button.classList.remove("copied");
+        }, 1800);
+      });
+    });
+  }
+
   function setupNavigation() {
     const sections = Array.from(document.querySelectorAll("[data-section]"));
     const segButtons = Array.from(document.querySelectorAll(".seg-btn"));
@@ -633,6 +690,7 @@
   setInterval(() => load(false), TTL);
   setInterval(tick, 1000);
 
+  setupCopy();
   setupNavigation();
   setupReveal();
   startTyping();
