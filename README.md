@@ -47,7 +47,7 @@
 如果这个主页或我的开源工作帮到了你，可以请我喝一杯喵。优先推荐 **Monero**，隐私更好：
 
 ```
-85EogNCqzyce44HwxoJaWWPy8g45WENqgYHjHdwNVguTCb7oV8Wjh2vNkGFAGFtf4r67Wh2qHA8TnVJV6Toui9gvEempUZj
+856imyCsKoKQAmZ2E57bZ5A8SVtwBdohg9CRmduvxjknB7ChJG8PRGBKG7jjPEcY3RcgWks8UDh9SXmVTgqy4fysK5VKiqi
 ```
 
 其他链会定期通过 DEX 归集到 Monero：

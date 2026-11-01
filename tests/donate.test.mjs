@@ -9,7 +9,7 @@ const html = readFileSync(join(root, "index.html"), "utf8");
 const readme = readFileSync(join(root, "README.md"), "utf8");
 
 const ADDRESSES = {
-  xmr: "85EogNCqzyce44HwxoJaWWPy8g45WENqgYHjHdwNVguTCb7oV8Wjh2vNkGFAGFtf4r67Wh2qHA8TnVJV6Toui9gvEempUZj",
+  xmr: "856imyCsKoKQAmZ2E57bZ5A8SVtwBdohg9CRmduvxjknB7ChJG8PRGBKG7jjPEcY3RcgWks8UDh9SXmVTgqy4fysK5VKiqi",
   btc: "bc1qdgfj0rm0tguna4nk36lxmeq45h59hscusrthk2",
   bch: "qrnyczppcmxkj7r2ajddsvsh6el4s4v9fvfgs0wl9h",
   eth: "0x0Ad817F7Ca658B3D2D83Ab019F2AeA5645a5b672"
